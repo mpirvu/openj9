@@ -291,6 +291,7 @@ class CompilationController
    static TR::CompilationInfo     *_compInfo;        // stored here for convenience
    static int32_t                 _verbose;
    static bool                    _useController;
+   static bool                    _tlsCompObjCreated;
    };
 
 } // namespace TR
