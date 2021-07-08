@@ -246,7 +246,7 @@ TR_PersistentCHTable::classGotExtended(
    if (cl->shouldNotBeNewlyExtended())
       {
       TR::CompilationInfo *compInfo = TR::CompilationInfo::get();
-      uint16_t mask = cl->getShouldNotBeNewlyExtendedMask().getValue();
+      uint8_t mask = cl->getShouldNotBeNewlyExtendedMask().getValue();
       for (int32_t ID = 0; mask; mask >>= 1, ++ID)
          {
          if (mask & 0x1)
