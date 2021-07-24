@@ -138,9 +138,9 @@ class TR_PersistentClassInfo : public TR_Link0<TR_PersistentClassInfo>
    virtual void setShouldNotBeNewlyExtended(int32_t ID);
    virtual void resetShouldNotBeNewlyExtended(int32_t ID)   { _shouldNotBeNewlyExtended.reset(1 << ID); }
    virtual void clearShouldNotBeNewlyExtended()             { _shouldNotBeNewlyExtended.clear(); }
-   bool shouldNotBeNewlyExtended()                   { return _shouldNotBeNewlyExtended.testAny(0xffff); }
+   bool shouldNotBeNewlyExtended()                   { return _shouldNotBeNewlyExtended.testAny(0xff); }
    bool shouldNotBeNewlyExtended(int32_t ID)         { return _shouldNotBeNewlyExtended.testAny(1 << ID); }
-   flags16_t getShouldNotBeNewlyExtendedMask() const { return _shouldNotBeNewlyExtended; }
+   flags8_t getShouldNotBeNewlyExtendedMask() const { return _shouldNotBeNewlyExtended; }
 
    virtual void setHasRecognizedAnnotations(bool v = true){ _flags.set(_containsRecognizedAnnotations, v); }
    bool hasRecognizedAnnotations()                { return _flags.testAny(_containsRecognizedAnnotations); }
@@ -187,7 +187,7 @@ class TR_PersistentClassInfo : public TR_Link0<TR_PersistentClassInfo>
       };
    int16_t   _prexAssumptions;
    uint16_t  _timeStamp;
-   flags16_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
+   flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
    flags8_t  _flags;
    CCVResult _ccvResult;
    };

@@ -171,7 +171,7 @@ public:
       };
    int16_t   _prexAssumptions;
    uint16_t  _timeStamp;
-   flags16_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
+   flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
    flags8_t  _flags;
 
    uint32_t             _numSubClasses;
