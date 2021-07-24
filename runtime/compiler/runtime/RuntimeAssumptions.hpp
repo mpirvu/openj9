@@ -75,6 +75,7 @@ class TR_PersistentClassInfo : public TR_Link0<TR_PersistentClassInfo>
       _fieldInfo(0),
       _prexAssumptions(0),
       _timeStamp(0),
+      _nameLength(-1),
       _shouldNotBeNewlyExtended(0),
       _flags(0),
       _ccvResult(notYetValidated) { }
@@ -154,6 +155,9 @@ class TR_PersistentClassInfo : public TR_Link0<TR_PersistentClassInfo>
    virtual void setClassHasBeenRedefined(bool v = true)  { _flags.set(_classHasBeenRedefined, v); }
    bool classHasBeenRedefined()                  { return _flags.testAny(_classHasBeenRedefined); }
 
+   int32_t getNameLength() { return _nameLength; }
+   virtual void setNameLength(int32_t length) { _nameLength = length; }
+
    void setCCVResult(CCVResult result) { _ccvResult = result; }
    CCVResult getCCVResult() const { return _ccvResult; }
 
@@ -187,6 +191,7 @@ class TR_PersistentClassInfo : public TR_Link0<TR_PersistentClassInfo>
       };
    int16_t   _prexAssumptions;
    uint16_t  _timeStamp;
+   int32_t _nameLength;
    flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
    flags8_t  _flags;
    CCVResult _ccvResult;

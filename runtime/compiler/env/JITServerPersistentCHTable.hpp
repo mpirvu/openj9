@@ -171,6 +171,7 @@ public:
       };
    int16_t   _prexAssumptions;
    uint16_t  _timeStamp;
+   int32_t _nameLength;
    flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
    flags8_t  _flags;
 
@@ -216,6 +217,7 @@ public:
    virtual void setAlreadyCheckedForAnnotations(bool v = true) override;
    virtual void setCannotTrustStaticFinal(bool v = true) override;
    virtual void setClassHasBeenRedefined(bool v = true) override;
+   virtual void setNameLength(int32_t length) override;
 private:
    static JITClientPersistentCHTable *_chTable;
    };

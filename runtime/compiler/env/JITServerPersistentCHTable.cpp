@@ -309,6 +309,7 @@ FlatPersistentClassInfo::serializeClass(TR_PersistentClassInfo *clazz, FlatPersi
    info->_visitedStatus = clazz->_visitedStatus;
    info->_prexAssumptions = clazz->_prexAssumptions;
    info->_timeStamp = clazz->_timeStamp;
+   info->_nameLength = clazz->_nameLength;
    info->_shouldNotBeNewlyExtended = clazz->_shouldNotBeNewlyExtended;
    info->_flags = clazz->_flags;
    TR_ASSERT(clazz->_flags.getValue() < 0x40, "corrupted flags");
@@ -353,6 +354,7 @@ FlatPersistentClassInfo::deserializeClassSimple(TR_PersistentClassInfo *clazz, F
    clazz->_classId = info->_classId;
    clazz->_visitedStatus = info->_visitedStatus;
    clazz->_timeStamp = info->_timeStamp;
+   clazz->_nameLength = info->_nameLength;
    clazz->_shouldNotBeNewlyExtended = info->_shouldNotBeNewlyExtended;
    clazz->_flags = info->_flags;
    clazz->_fieldInfo = NULL;
@@ -642,4 +644,10 @@ void TR_JITClientPersistentClassInfo::setClassHasBeenRedefined(bool v)
    {
    TR_JITClientPersistentClassInfo::_chTable->markDirty(getClassId());
    TR_PersistentClassInfo::setClassHasBeenRedefined(v);
+   }
+
+void TR_JITClientPersistentClassInfo::setNameLength(int32_t length)
+   {
+   TR_JITClientPersistentClassInfo::_chTable->markDirty(getClassId());
+   TR_PersistentClassInfo::setNameLength(length);
    }
