@@ -172,9 +172,9 @@ public:
    int16_t   _prexAssumptions;
    uint16_t  _timeStamp;
    int32_t _nameLength;
-   flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
    flags8_t  _flags;
-
+   flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
+  
    uint32_t             _numSubClasses;
    TR_OpaqueClassBlock *_subClasses[0];
    };

@@ -192,8 +192,8 @@ class TR_PersistentClassInfo : public TR_Link0<TR_PersistentClassInfo>
    int16_t   _prexAssumptions;
    uint16_t  _timeStamp;
    int32_t _nameLength;
-   flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
    flags8_t  _flags;
+   flags8_t _shouldNotBeNewlyExtended; // one bit for each possible compilation thread
    CCVResult _ccvResult;
    };
 
