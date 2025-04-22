@@ -200,6 +200,8 @@ JITServerIProfiler::cacheProfilingDataForMethod(TR_OpaqueMethodBlock *method,
    bool cachingFailed = false;
    // Walk the data sent by the client and add new entries to our internal hashtable
    const char *bufferPtr = &ipdata[0];
+   if (ipdata.empty())
+      fprintf(stderr, "Empty profile data. bufferPtr=%p\n", bufferPtr);
    TR_IPBCDataStorageHeader *storage = NULL;
    uintptr_t methodStart = TR::Compiler->mtd.bytecodeStart(method); // TODO: avoid this costly function
    uint32_t methodSize = 0; // Will be computed later
@@ -377,7 +379,7 @@ JITServerIProfiler::profilingSample(TR_OpaqueMethodBlock *method, uint32_t byteC
 
       // If the shared profile cache is enabled, we must compare the "quality" of the data in the
       // shared repository to the "quality" of the data sent by the client.
-      int sharedProfileQuality = -1; // pessimistic; -1 means bad quality
+      int sharedProfileQuality = 0; // pessimistic; -1 means bad quality
       if (clientSession->useSharedProfileCache())
          {
          BytecodeProfileSummary clientProfileSummary(numClientSamples, numProfiledBytecodes, usePersistentCache);
