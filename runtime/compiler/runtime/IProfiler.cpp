@@ -2160,6 +2160,17 @@ void
 TR_IProfiler::getBranchCounters(TR::Node *node, TR::TreeTop *fallThroughTree, int32_t *taken, int32_t *notTaken, TR::Compilation *comp)
    {
    static bool traceIProfiling = ((debug("traceIProfiling") != NULL));
+
+   // Ensure that we call getProfilingData() only for branch bytecodes
+   uintptr_t pc = getSearchPC(getMethodFromNode(node, comp), node->getByteCodeInfo().getByteCodeIndex(), comp);
+   uint8_t bytecode = *((U_8*)pc);
+   if (!isCompact(bytecode))
+      {
+      *taken = 0;
+      *notTaken = 0;
+      return;
+      }
+
    uintptr_t data = getProfilingData (node, comp);
 
    if (data)
